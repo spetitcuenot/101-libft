@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   strstr.c                                         .::    .:/ .      .::   */
+/*   ft_memcmp.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: spetitcu <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/11 15:57:20 by spetitcu     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/11 15:57:21 by spetitcu    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/21 15:57:47 by spetitcu     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/21 15:58:06 by spetitcu    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-char	*ft_strstr(char *haystack, char *needle)
+#include "libft.h"
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int i;
-	int j;
-	int find;
+	size_t				i;
+	const unsigned char	*sr1;
+	const unsigned char	*sr2;
 
 	i = 0;
-	j = 0;
-	while (needle[j])
-		j++;
-	find = j;
-	if (needle[0] == haystack[0] || needle[0] == 0)
-		return (haystack);
-	while (haystack[i])
+	sr1 = s1;
+	sr2 = s2;
+	while (i < n)
 	{
-		while (haystack[i + j] == needle[j])
+		if (sr1[i] != sr2[i])
 		{
-			if (j == find - 1)
-				return (haystack + i);
-			j++;
+			return (sr1[i] - sr2[i]);
 		}
-		j = 0;
 		i++;
 	}
 	return (0);

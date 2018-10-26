@@ -14,28 +14,17 @@
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
 	int unsigned i;
-	int unsigned comp;
 
 	i = 0;
-	while (src[i] != '\0')
-		i++;
-	comp = i;
-	i = 0;
-	while (n <= comp && i <= (n - 1))
+	while ((i < n) && (src[i] != '\0'))
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	i = 0;
-	while ((comp < n) && (i < comp))
+	while (i < n)
 	{
-		dest[i] = src[i];
+		dest[i] = '\0';
 		i++;
-	}
-	while (comp < n)
-	{
-		dest[comp] = '\0';
-		comp++;
 	}
 	return (dest);
 }
