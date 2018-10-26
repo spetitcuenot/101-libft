@@ -9,13 +9,15 @@ CFLAGS = -Wall -Wextra -Werror -Includes
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	echo "Linking..."
+	@echo "Linking..."
 	@ar rcs $(NAME) $?
+	@echo "Linking ok"
 
 clean:
-	rm -f *.o
-
+	@rm -f *.o
+	@echo "clean..."
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "fclean..."
 
 re: fclean all

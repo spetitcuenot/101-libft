@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   strstr.c                                         .::    .:/ .      .::   */
+/*   ft_memset.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: spetitcu <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/11 15:57:20 by spetitcu     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/11 15:57:21 by spetitcu    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/21 15:58:22 by spetitcu     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/21 15:58:42 by spetitcu    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-char	*ft_strstr(char *haystack, char *needle)
+#include "libft.h"
+
+void	*ft_memset(void *b, int c, size_t len)
 {
-	int i;
-	int j;
-	int find;
+	size_t	i;
+	char	*dest;
 
 	i = 0;
-	j = 0;
-	while (needle[j])
-		j++;
-	find = j;
-	if (needle[0] == haystack[0] || needle[0] == 0)
-		return (haystack);
-	while (haystack[i])
+	dest = b;
+	while ((i < len) && (len != 0))
 	{
-		while (haystack[i + j] == needle[j])
-		{
-			if (j == find - 1)
-				return (haystack + i);
-			j++;
-		}
-		j = 0;
+		dest[i] = c;
 		i++;
 	}
-	return (0);
+	return (b);
 }

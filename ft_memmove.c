@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   strstr.c                                         .::    .:/ .      .::   */
+/*   ft_memmove.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: spetitcu <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/11 15:57:20 by spetitcu     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/11 15:57:21 by spetitcu    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/21 16:00:14 by spetitcu     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/21 16:00:31 by spetitcu    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-char	*ft_strstr(char *haystack, char *needle)
-{
-	int i;
-	int j;
-	int find;
+#include "libft.h"
 
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	size_t				i;
+	unsigned char		*d;
+	const unsigned char	*s;
+
+	d = dst;
+	s = src;
 	i = 0;
-	j = 0;
-	while (needle[j])
-		j++;
-	find = j;
-	if (needle[0] == haystack[0] || needle[0] == 0)
-		return (haystack);
-	while (haystack[i])
+	if (d < s)
+		ft_memcpy(d, s, len);
+	else
 	{
-		while (haystack[i + j] == needle[j])
-		{
-			if (j == find - 1)
-				return (haystack + i);
-			j++;
-		}
-		j = 0;
-		i++;
+		while (len-- > 0)
+			((char *)d)[len] = ((char *)s)[len];
 	}
-	return (0);
+	return (dst);
 }
