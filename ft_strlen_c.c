@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   strstr.c                                         .::    .:/ .      .::   */
+/*   ft_strlen_c.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: spetitcu <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/11 15:57:20 by spetitcu     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/11 15:57:21 by spetitcu    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/11/04 20:22:40 by spetitcu     #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/04 20:23:03 by spetitcu    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(char *haystack, char *needle)
+int	ft_strlen_c(const char *s, char c)
 {
-	int i;
-	int j;
-	int find;
+	int	i;
 
 	i = 0;
-	j = 0;
-	find = ft_strlen((char *)needle);
-	if (needle[0] == 0)
-		return (haystack);
-	while (haystack[i])
-	{
-		while (haystack[i + j] == needle[j])
-		{
-			if (j == find - 1)
-				return ((char *)haystack + i);
-			j++;
-		}
-		j = 0;
+	while (s[i] != c && s[i] != '\0')
 		i++;
-	}
-	return (NULL);
+	return (i);
 }

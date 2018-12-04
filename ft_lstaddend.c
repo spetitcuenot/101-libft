@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   strstr.c                                         .::    .:/ .      .::   */
+/*   ft_lstaddend.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: spetitcu <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/11 15:57:20 by spetitcu     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/11 15:57:21 by spetitcu    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/12/03 17:50:22 by spetitcu     #+#   ##    ##    #+#       */
+/*   Updated: 2018/12/03 17:51:26 by spetitcu    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(char *haystack, char *needle)
+void	ft_lstaddend(t_list **nlst, t_list *new)
 {
-	int i;
-	int j;
-	int find;
+	t_list	*tmp;
 
-	i = 0;
-	j = 0;
-	find = ft_strlen((char *)needle);
-	if (needle[0] == 0)
-		return (haystack);
-	while (haystack[i])
+	tmp = *nlst;
+	if (tmp == NULL)
+		*nlst = new;
+	else
 	{
-		while (haystack[i + j] == needle[j])
-		{
-			if (j == find - 1)
-				return ((char *)haystack + i);
-			j++;
-		}
-		j = 0;
-		i++;
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		tmp->next = new;
 	}
-	return (NULL);
 }

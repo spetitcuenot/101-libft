@@ -17,7 +17,7 @@ char	*ft_strnew(size_t size)
 {
 	void *mem;
 
-	if (!(mem = malloc(sizeof(*mem) * size)))
+	if (!(mem = malloc(sizeof(*mem) * (size + 1))))
 		return (NULL);
-	return (ft_memset(mem, '\0', size));
+	return (ft_memset(mem, 0, size + 1));
 }

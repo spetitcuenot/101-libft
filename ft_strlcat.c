@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   strstr.c                                         .::    .:/ .      .::   */
+/*   ft_strlcat.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: spetitcu <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/11 15:57:20 by spetitcu     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/11 15:57:21 by spetitcu    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/12/04 16:46:22 by spetitcu     #+#   ##    ##    #+#       */
+/*   Updated: 2018/12/04 16:47:01 by spetitcu    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(char *haystack, char *needle)
+size_t	ft_strlcat(char *dest, const char *src, size_t n)
 {
-	int i;
-	int j;
-	int find;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	j = 0;
-	find = ft_strlen((char *)needle);
-	if (needle[0] == 0)
-		return (haystack);
-	while (haystack[i])
+	while (dest[i] != '\0' && i < n)
+		i++;
+	if (n == 0)
+		return (ft_strlen((char *)src));
+	j = i;
+	while (src[i - j] != '\0' && i < n - 1)
 	{
-		while (haystack[i + j] == needle[j])
-		{
-			if (j == find - 1)
-				return ((char *)haystack + i);
-			j++;
-		}
-		j = 0;
+		dest[i] = src[i - j];
 		i++;
 	}
-	return (NULL);
+	if (j < n)
+		dest[i] = '\0';
+	return (j + ft_strlen((char *)src));
 }

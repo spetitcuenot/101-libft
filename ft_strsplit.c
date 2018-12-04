@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   strstr.c                                         .::    .:/ .      .::   */
+/*   ft_strsplit.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: spetitcu <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/11 15:57:20 by spetitcu     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/11 15:57:21 by spetitcu    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/31 02:15:55 by spetitcu     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/31 02:17:12 by spetitcu    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(char *haystack, char *needle)
+char		**ft_strsplit(char const *s, char c)
 {
-	int i;
-	int j;
-	int find;
+	char	**tab;
+	int		j;
+	int		i;
+	int		k;
 
 	i = 0;
 	j = 0;
-	find = ft_strlen((char *)needle);
-	if (needle[0] == 0)
-		return (haystack);
-	while (haystack[i])
+	k = -1;
+	if (!s)
+		return (NULL);
+	if (!(tab = (char **)malloc(sizeof(char *) * (ft_cword((char *)s, c) + 1))))
+		return (NULL);
+	while (++k < (ft_cword((char *)s, c)))
 	{
-		while (haystack[i + j] == needle[j])
-		{
-			if (j == find - 1)
-				return ((char *)haystack + i);
-			j++;
-		}
+		while ((s[i] == c) && (s[i] != '\0'))
+			i++;
+		j = i;
+		tab[k] = ft_strsub(s, j, ft_strlen_c((char *)s + i, c));
+		while ((s[i] != c) && (s[i] != '\0'))
+			i++;
 		j = 0;
-		i++;
 	}
-	return (NULL);
+	tab[k] = (char *)'\0';
+	return (tab);
 }

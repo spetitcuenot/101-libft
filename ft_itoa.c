@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   strstr.c                                         .::    .:/ .      .::   */
+/*   ft_itoa.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: spetitcu <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/11 15:57:20 by spetitcu     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/11 15:57:21 by spetitcu    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/11/20 16:59:19 by spetitcu     #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/20 18:05:33 by spetitcu    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(char *haystack, char *needle)
+char	*ft_itoa(int n)
 {
-	int i;
-	int j;
-	int find;
+	char	*nstr;
+	int		size;
+	long	sn;
 
-	i = 0;
-	j = 0;
-	find = ft_strlen((char *)needle);
-	if (needle[0] == 0)
-		return (haystack);
-	while (haystack[i])
+	sn = n;
+	size = ft_intlen(sn);
+	if (!(nstr = (char *)malloc(sizeof(char) * size + 1)))
+		return (NULL);
+	if (sn < 0)
+		sn = sn * -1;
+	nstr[size] = '\0';
+	while (--size >= 0)
 	{
-		while (haystack[i + j] == needle[j])
-		{
-			if (j == find - 1)
-				return ((char *)haystack + i);
-			j++;
-		}
-		j = 0;
-		i++;
+		nstr[size] = (sn % 10) + '0';
+		sn = sn / 10;
 	}
-	return (NULL);
+	if (n < 0)
+		nstr[0] = '-';
+	return (nstr);
 }

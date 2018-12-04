@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   strstr.c                                         .::    .:/ .      .::   */
+/*   ft_strtrim.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: spetitcu <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/11 15:57:20 by spetitcu     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/11 15:57:21 by spetitcu    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/30 23:19:35 by spetitcu     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/30 23:35:39 by spetitcu    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(char *haystack, char *needle)
+char	*ft_strtrim(char const *s)
 {
-	int i;
-	int j;
-	int find;
+	int		i;
+	int		j;
+	int		len;
+	char	*nstr;
 
 	i = 0;
 	j = 0;
-	find = ft_strlen((char *)needle);
-	if (needle[0] == 0)
-		return (haystack);
-	while (haystack[i])
-	{
-		while (haystack[i + j] == needle[j])
-		{
-			if (j == find - 1)
-				return ((char *)haystack + i);
-			j++;
-		}
-		j = 0;
+	if (!s)
+		return (NULL);
+	len = ft_strlen((char *)s);
+	if (!(nstr = (char *)malloc(sizeof(*nstr) * len + 1)))
+		return (NULL);
+	len--;
+	while ((s[i]) && ((s[i] == ' ') || (s[i] == '\n') || (s[i] == '\t')))
 		i++;
-	}
-	return (NULL);
+	while ((s[len]) && ((s[len] == ' ') || (s[len] == '\n')
+		|| (s[len] == '\t')))
+		len--;
+	while (i <= len)
+		nstr[j++] = s[i++];
+	nstr[j] = '\0';
+	return (nstr);
 }
