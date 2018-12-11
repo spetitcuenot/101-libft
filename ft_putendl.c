@@ -13,10 +13,10 @@
 
 #include "libft.h"
 
-void	ft_putendl(char *str)
+void	ft_putendl(char const *str)
 {
 	if (!str)
 		return ;
-	write(1, str, ft_strlen(str));
+	write(1, str, ft_strlen((char *)str));
 	write(1, "\n", 1);
 }

@@ -13,9 +13,9 @@
 
 #include "libft.h"
 
-void	ft_putstr(char *str)
+void	ft_putstr(char const *s)
 {
-	if (!str)
+	if (!s)
 		return ;
-	write(1, str, ft_strlen(str));
+	write(1, s, ft_strlen((char *)s));
 }

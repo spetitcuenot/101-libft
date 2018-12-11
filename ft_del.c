@@ -13,10 +13,12 @@
 
 #include "libft.h"
 
+/*
+** (void)size;
+*/
+
 void	ft_del(void *content, size_t size)
 {
-	size_t	t;
-
-	t = size;
+	(void)size;
 	free(content);
 }
